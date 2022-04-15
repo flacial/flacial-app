@@ -1,0 +1,55 @@
+$secondary_color: hsl(39deg 100% 50% / 49%)
+@use 'sass:color'
+
+.container
+  padding: 2rem 2rem
+  background-color: #0b0b0b
+  height: 100%
+  display: flex
+  place-items: center
+  flex-direction: column
+
+.title
+  margin: 0
+  line-height: 1.15
+  font-size: 4rem
+  text-shadow: 2px 4px 18px #ff007a3d
+  font-weight: 400
+
+.grid
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-wrap: wrap
+  max-width: 800px
+
+.main
+  display: grid
+  width: 100%
+  justify-items: center
+  align-items: center
+  height: 100%
+
+.nav
+  width: 100%
+  color: $secondary_color
+
+  & a
+    transition: color 0.3s ease
+    display: flex
+    align-items: center
+    column-gap: 5px
+
+  & a:hover
+    color: color.adjust($secondary_color, $alpha: 1%)
+
+.gradient
+  color: inherit
+  background-image: linear-gradient(28deg, #ff00a8 9%, hsla(166.76, 96.03%, 29.61%, 0.009498300300538887) 93%), linear-gradient(237deg,#ff005c 18%, hsla(153.75, 98.46%, 25.49%, 0.5665674709371393) 100%), linear-gradient(282deg, #ffa700 38%, #e462ff 100%)
+  -webkit-text-fill-color: transparent
+  -webkit-background-clip: text
+
+@media (max-width: 600px)
+  .grid
+    width: 100%
+    flex-direction: column

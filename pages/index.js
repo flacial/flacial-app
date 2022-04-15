@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.sass'
+import { GoMarkGithub } from 'react-icons/go';
 
 export default function Home() {
   return (
@@ -11,6 +11,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <nav className={styles.nav} >
+        <a href={'https://github.com/flacial/flacial-app'} target='_blank' rel="noreferrer">You can track the progress on <GoMarkGithub /></a>
+      </nav>
       <main className={styles.main}>
         <h1 className={`${styles.title} ${styles.gradient}`}>
           Coming soon...
