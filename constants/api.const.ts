@@ -1,0 +1,1 @@
+export const POSTHOG_LINK = 'https://app.posthog.com'
