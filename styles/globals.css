@@ -19,3 +19,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+pre {
+  font-family: 'Fira code';
+  white-space: pre;
+  font-size: 14px;
+}
