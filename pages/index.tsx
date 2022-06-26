@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.sass'
 import { GoMarkGithub } from 'react-icons/go';
 import Layout from '../components/Layout';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -12,6 +13,15 @@ export default function Home() {
           <h1 className={`${styles.title} ${styles.gradient}`}>
             Coming soon...
           </h1>
+          <ul className={styles.main__pages}>
+            <li>
+              <Link href='leetcode'>
+                <a>
+                  Leetcode
+                </a>
+              </Link>
+            </li>
+          </ul>
         </main>
     </Layout>
   )
