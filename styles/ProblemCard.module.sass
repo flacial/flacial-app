@@ -1,3 +1,5 @@
+@use './_variables.module'
+
 .card
     border-radius: 8px
     background: hsl(0, 0%, 17.6%)
@@ -13,27 +15,27 @@
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
-    color: #ABABAB
+    color: variables.$fg-primary
 
 .card__badge
     border-radius: 8px
-    background: #cbcbcb
+    background: variables.$bg-gray
     padding: 2px 4px
     max-width: 63px
     text-align: center
-    color: #424242
-    font-family: Rubik
+    color: variables.$fg-dark
+    font-family: Rubik, Roboto
     font-size: 14px
     font-weight: 400
 
 .card__name__id, .card__name
-    color: #ABABAB
-    font-family: Rubik
+    color: variables.$fg-primary
+    font-family: Rubik, Roboto
     font-size: 16px
     font-weight: 400
 
 .card__name__id
-    color: #7F7F7F
+    color: variables.$fg-subtle
     margin-right: 4px
 
 .card__btn
@@ -43,18 +45,18 @@
 
 .card__btn--main
     border-radius: 8px
-    background: #424242
+    background: variables.$fg-dark
     padding: 14px 20px
     border: 0
-    color: #ababab
-    font-family: Rubik
+    color: variables.$fg-primary
+    font-family: Rubik, Roboto
     font-size: 14px
     font-weight: 400
     transition: background-color 0.2s ease-out
     cursor: pointer
 
     &:hover
-        background-color: rgba(#424242, 0.8)
+        background-color: rgba(variables.$fg-dark, 0.8)
     &:active
         transform: scale(0.98)
 
@@ -62,8 +64,8 @@
     border-radius: 8px
     padding: 14px 20px
     border: 0
-    color: #ababab
-    font-family: Rubik
+    color: variables.$fg-primary
+    font-family: Rubik, Roboto
     font-size: 14px
     font-weight: 400
     background-color: transparent
@@ -71,7 +73,7 @@
     cursor: pointer
 
     &:hover
-        color: rgba(#ababab, 0.8)
+        color: rgba(variables.$fg-primary, 0.8)
     &:active
         transform: scale(0.98)
 
