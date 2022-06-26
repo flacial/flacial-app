@@ -12,7 +12,7 @@ const Leetcode = ({ problems }: Props) => {
   const problemsToProblemCards = problems.map(p => <ProblemCard key={p.id} problem={p} />)
 
   return (
-    <Layout>
+    <Layout title='Leetcode'>
       <div className={styles.container}>
         <div className={styles.heading}>
           <h1 className={styles.heading__title}>Leetcode</h1>
