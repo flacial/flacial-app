@@ -1,5 +1,6 @@
-$secondary_color: hsl(39deg 100% 50% / 49%)
 @use 'sass:color'
+@use './_variables.module'
+$secondary_color: variables.$fg-subtle
 
 .container
   padding: 2rem 2rem
@@ -13,7 +14,7 @@ $secondary_color: hsl(39deg 100% 50% / 49%)
   margin: 0
   line-height: 1.15
   font-size: 4rem
-  text-shadow: 2px 4px 18px #ff007a3d
+  text-shadow: 2px 4px 18px variables.$bg-dark
   font-weight: 400
 
 .grid
@@ -29,10 +30,11 @@ $secondary_color: hsl(39deg 100% 50% / 49%)
   justify-items: center
   align-items: center
   height: 100%
+  flex: 1
 
 .nav
   width: 100%
-  color: $secondary_color
+  color: rgba($secondary_color, 0.8)
 
   & a
     transition: color 0.3s ease
@@ -41,13 +43,10 @@ $secondary_color: hsl(39deg 100% 50% / 49%)
     column-gap: 5px
 
   & a:hover
-    color: color.adjust($secondary_color, $alpha: 1%)
+    color: $secondary_color
 
 .gradient
-  color: inherit
-  background-image: linear-gradient(28deg, hsl(320.5, 100%, 50%) 9%, hsla(166.76, 96.03%, 29.61%, 0.009498300300538887) 93%), linear-gradient(237deg,#ff005c 18%, hsla(153.75, 98.46%, 25.49%, 0.5665674709371393) 100%), linear-gradient(282deg, #ffa700 38%, #e462ff 100%)
-  -webkit-text-fill-color: transparent
-  -webkit-background-clip: text
+  color: variables.$fg-primary
 
 @media (max-width: 600px)
   .grid
