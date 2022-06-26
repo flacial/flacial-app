@@ -1,0 +1,88 @@
+@use './_variables.module'
+
+.card
+    border-radius: 8px
+    background: hsl(0, 0%, 17.6%)
+    display: flex
+    flex-direction: column
+    padding: 14px 20px
+    max-width: fit-content
+    row-gap: 10px
+
+.card__problem
+    margin-top: 10px
+    width: 300px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    color: variables.$fg-primary
+
+.card__badge
+    border-radius: 8px
+    background: variables.$bg-gray
+    padding: 2px 4px
+    max-width: 63px
+    text-align: center
+    color: variables.$fg-dark
+    font-family: Rubik, Roboto
+    font-size: 14px
+    font-weight: 400
+
+.card__name__id, .card__name
+    color: variables.$fg-primary
+    font-family: Rubik, Roboto
+    font-size: 16px
+    font-weight: 400
+
+.card__name__id
+    color: variables.$fg-subtle
+    margin-right: 4px
+
+.card__btn
+    display: flex
+    column-gap: 10px
+    margin-top: 30px
+
+.card__btn--main
+    border-radius: 8px
+    background: variables.$fg-dark
+    padding: 14px 20px
+    border: 0
+    color: variables.$fg-primary
+    font-family: Rubik, Roboto
+    font-size: 14px
+    font-weight: 400
+    transition: background-color 0.2s ease-out
+    cursor: pointer
+
+    &:hover
+        background-color: rgba(variables.$fg-dark, 0.8)
+    &:active
+        transform: scale(0.98)
+
+.card__btn--secondary
+    border-radius: 8px
+    padding: 14px 20px
+    border: 0
+    color: variables.$fg-primary
+    font-family: Rubik, Roboto
+    font-size: 14px
+    font-weight: 400
+    background-color: transparent
+    transition: color 0.2s ease-out
+    cursor: pointer
+
+    &:hover
+        color: rgba(variables.$fg-primary, 0.8)
+    &:active
+        transform: scale(0.98)
+
+.solution
+    padding: 20px 30px
+    border-radius: 8px
+
+.solution__container
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)

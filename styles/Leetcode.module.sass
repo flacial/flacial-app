@@ -1,0 +1,36 @@
+.container
+    display: grid
+    justify-content: center
+.heading
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-bottom: 50px
+.heading__title
+    color: #cbcbcb
+    font-family: Rubik, Roboto
+    font-size: 48px
+    font-weight: 400
+    margin-bottom: 20px
+    margin-top: 0
+.heading__desc
+    color: #ababab
+    font-family: Rubik, Roboto
+    font-size: 16px
+    font-weight: 400
+    overflow: hidden
+    max-width: 50ch
+    text-align: center
+.problems
+    display: grid
+    justify-items: center
+    grid-template-columns: 368px 368px 368px
+    grid-gap: 1rem
+
+@media screen and (max-width: 1200px)
+    .problems
+        grid-template-columns: 368px 365px
+
+@media screen and (max-width: 820px)
+    .problems
+        grid-template-columns: 1fr
