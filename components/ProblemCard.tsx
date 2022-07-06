@@ -40,8 +40,10 @@ const ProblemCard = ({ problem }: Props) => {
                   style={style}
                 >
                   {tokens.map((line, i) => (
+                    // eslint-disable-next-line react/jsx-key
                     <div {...getLineProps({ line, key: i })}>
                       {line.map((token, key) => (
+                        // eslint-disable-next-line react/jsx-key
                         <span {...getTokenProps({ token, key })} />
                       ))}
                     </div>
