@@ -1,0 +1,22 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "parser": "typescript",
+  "trailingComma": "none",
+  "arrowParens": "avoid",
+  "proseWrap": "always",
+  "overrides": [
+    {
+      "files": "*.sass",
+      "options": {
+        "parser": "sass"
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}
