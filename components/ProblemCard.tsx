@@ -18,6 +18,44 @@ const Badge = ({ type }: BadgeProps) => (
   <div className={styles.card__badge}>{type}</div>
 )
 
+type ProblemSolutionModalProps = {
+  open: boolean
+  onClose: () => void
+  problem: Problem
+}
+const ProblemSolutionModal = ({
+  open,
+  onClose,
+  problem
+}: ProblemSolutionModalProps) => (
+  <Modal
+    open={open}
+    onClose={onClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
+    <Box className={styles.solution__container}>
+      <div className={styles.solution}>
+        <Highlight {...defaultProps} code={problem.solution} language="jsx">
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={`${styles.solution} ${className}`} style={style}>
+              {tokens.map((line, i) => (
+                // eslint-disable-next-line react/jsx-key
+                <div {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    // eslint-disable-next-line react/jsx-key
+                    <span {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
+      </div>
+    </Box>
+  </Modal>
+)
+
 const ProblemCard = ({ problem }: Props) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -25,35 +63,11 @@ const ProblemCard = ({ problem }: Props) => {
 
   return (
     <div className={styles.card}>
-      <Modal
-        open={open}
+      <ProblemSolutionModal
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box className={styles.solution__container}>
-          <div className={styles.solution}>
-            <Highlight {...defaultProps} code={problem.solution} language="jsx">
-              {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre
-                  className={`${styles.solution} ${className}`}
-                  style={style}
-                >
-                  {tokens.map((line, i) => (
-                    // eslint-disable-next-line react/jsx-key
-                    <div {...getLineProps({ line, key: i })}>
-                      {line.map((token, key) => (
-                        // eslint-disable-next-line react/jsx-key
-                        <span {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
-                  ))}
-                </pre>
-              )}
-            </Highlight>
-          </div>
-        </Box>
-      </Modal>
+        open={open}
+        problem={problem}
+      />
       <div className={styles.card__badge__container}>
         {problem.type.map((t, i) => (
           <Badge key={i} type={t} />
