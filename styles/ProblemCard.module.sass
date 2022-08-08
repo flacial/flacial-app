@@ -89,3 +89,35 @@
     transform: translate(-50%, -50%)
     width: 100%
     max-width: fit-content
+    background-color: #00000045
+    backdrop-filter: blur(3px)
+    padding: 20px 30px
+    height: fit-content
+    max-height: 700px
+    overflow: hidden
+    color: variables.$fg-primary
+    border-radius: 8px
+
+    &:hover
+        overflow: auto
+        padding-right: 20px
+
+.solution__container__heading 
+    color: variables.$fg-primary
+
+.solution__code 
+    margin-bottom: 48px
+
+.solution__container::-webkit-scrollbar 
+    width: 10px
+
+.solution__container::-webkit-scrollbar-track 
+  background-color: #424242
+
+.solution__container::-webkit-scrollbar-thumb 
+    background-color: #2d2d2d
+    transition: background-color 0.3s ease
+
+.solution__container::-webkit-scrollbar-thumb:hover 
+    transition: background-color 0.3s ease
+    background-color: #313131

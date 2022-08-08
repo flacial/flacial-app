@@ -3,14 +3,21 @@ import Layout from '../components/Layout'
 import ProblemCard from '../components/ProblemCard'
 import styles from '../styles/Leetcode.module.sass'
 import { Problem, problems } from '../data/problems'
+import { promises as fs } from 'fs'
+import path from 'path'
 
 type Props = {
   problems: Problem[]
+  explanations: { filename: string; content: string }[]
 }
 
-const Leetcode = ({ problems }: Props) => {
+const Leetcode = ({ problems, explanations }: Props) => {
   const problemsToProblemCards = problems.map(p => (
-    <ProblemCard key={p.id} problem={p} />
+    <ProblemCard
+      key={p.id}
+      problem={p}
+      explanation={explanations.find(e => e.filename === p.short)}
+    />
   ))
 
   return (
@@ -30,9 +37,23 @@ const Leetcode = ({ problems }: Props) => {
 }
 
 export const getStaticProps = async () => {
+  const explanationsDir = path.join(process.cwd(), 'data/explanations')
+  const filenames = await fs.readdir(explanationsDir)
+
+  const explanations = filenames.map(async filename => {
+    const filePath = path.join(explanationsDir, filename)
+    const fileContents = await fs.readFile(filePath, 'utf8')
+
+    return {
+      filename: filename.split('.')[0],
+      content: fileContents
+    }
+  })
+
   return {
     props: {
-      problems
+      problems,
+      explanations: await Promise.all(explanations)
     }
   }
 }
