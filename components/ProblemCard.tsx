@@ -5,9 +5,11 @@ import Modal from '@mui/material/Modal'
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Highlight, { defaultProps } from 'prism-react-renderer'
+import Markdoc from '@markdoc/markdoc'
 
 type Props = {
   problem: Problem
+  explanation?: { filename: string; content: string }
 }
 
 type BadgeProps = {
@@ -22,41 +24,57 @@ type ProblemSolutionModalProps = {
   open: boolean
   onClose: () => void
   problem: Problem
+  explanation?: { filename: string; content: string }
 }
 const ProblemSolutionModal = ({
   open,
   onClose,
-  problem
-}: ProblemSolutionModalProps) => (
-  <Modal
-    open={open}
-    onClose={onClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box className={styles.solution__container}>
-      <div className={styles.solution}>
-        <Highlight {...defaultProps} code={problem.solution} language="jsx">
-          {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <pre className={`${styles.solution} ${className}`} style={style}>
-              {tokens.map((line, i) => (
-                // eslint-disable-next-line react/jsx-key
-                <div {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => (
-                    // eslint-disable-next-line react/jsx-key
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </div>
-              ))}
-            </pre>
-          )}
-        </Highlight>
-      </div>
-    </Box>
-  </Modal>
-)
+  problem,
+  explanation
+}: ProblemSolutionModalProps) => {
+  return (
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box className={styles.solution__container}>
+        <h3 className={styles.solution__container__heading}>
+          My thoughts through <em>solving</em> {problem.name}
+        </h3>
+        <div className={styles.solution__code}>
+          <Highlight {...defaultProps} code={problem.solution} language="jsx">
+            {({ className, style, tokens, getLineProps, getTokenProps }) => (
+              <pre className={`${styles.solution} ${className}`} style={style}>
+                {tokens.map((line, i) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <div {...getLineProps({ line, key: i })}>
+                    {line.map((token, key) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                  </div>
+                ))}
+              </pre>
+            )}
+          </Highlight>
+        </div>
+        <div>
+          {explanation?.content
+            ? Markdoc.renderers.react(
+                Markdoc.transform(Markdoc.parse(explanation.content)),
+                React,
+                {}
+              )
+            : 'No explanation yet for this problem'}
+        </div>
+      </Box>
+    </Modal>
+  )
+}
 
-const ProblemCard = ({ problem }: Props) => {
+const ProblemCard = ({ problem, explanation }: Props) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -67,6 +85,7 @@ const ProblemCard = ({ problem }: Props) => {
         onClose={handleClose}
         open={open}
         problem={problem}
+        explanation={explanation}
       />
       <div className={styles.card__badge__container}>
         {problem.type.map((t, i) => (
