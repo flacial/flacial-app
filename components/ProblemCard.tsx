@@ -7,6 +7,8 @@ import Box from '@mui/material/Box'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import Markdoc from '@markdoc/markdoc'
 import duoToneDark from 'prism-react-renderer/themes/duotoneDark'
+import { MdCopyAll, MdOutlineError } from 'react-icons/md'
+import { MdCheck } from 'react-icons/md'
 
 type Props = {
   problem: Problem
@@ -21,6 +23,12 @@ const Badge = ({ type }: BadgeProps) => (
   <div className={styles.card__badge}>{type}</div>
 )
 
+enum CopyState {
+  NOT_COPIED,
+  COPIED,
+  ERROR
+}
+
 type ProblemSolutionModalProps = {
   open: boolean
   onClose: () => void
@@ -33,6 +41,20 @@ const ProblemSolutionModal = ({
   problem,
   explanation
 }: ProblemSolutionModalProps) => {
+  const [copyState, setCopyState] = useState(CopyState.NOT_COPIED)
+
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(problem.solution)
+      setCopyState(CopyState.COPIED)
+      setTimeout(() => setCopyState(CopyState.NOT_COPIED), 1000)
+    } catch (e) {
+      // Error handler
+      setCopyState(CopyState.ERROR)
+      setTimeout(() => setCopyState(CopyState.NOT_COPIED), 1000)
+    }
+  }
+
   return (
     <Modal
       open={open}
@@ -45,6 +67,15 @@ const ProblemSolutionModal = ({
           My thoughts through <em>solving</em> {problem.name}
         </h3>
         <div className={styles.solution__code}>
+          <div className={styles.solution__code__copy} onClick={copyCode}>
+            {copyState === CopyState.NOT_COPIED ? (
+              <MdCopyAll size={24} />
+            ) : copyState === CopyState.COPIED ? (
+              <MdCheck size={24} />
+            ) : (
+              <MdOutlineError size={24} />
+            )}
+          </div>
           <Highlight
             {...defaultProps}
             theme={duoToneDark}

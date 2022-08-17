@@ -110,6 +110,7 @@
 
 .solution__code
     margin-bottom: 48px
+    position: relative
 
 .solution__container::-webkit-scrollbar
     width: 10px
@@ -124,3 +125,25 @@
 .solution__container::-webkit-scrollbar-thumb:hover
     transition: background-color 0.3s ease
     background-color: #313131
+
+.solution__code__copy
+    position: absolute
+    right: 20px
+    top: 20px
+    color: #f0c092
+    transition: transform 0.2s ease
+    cursor: pointer
+    user-select: none
+    background: #f8c39126
+    width: 48px
+    height: 48px
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 8px
+
+    &:hover
+        transform: scale(1.05)
+
+    &:active 
+        transform: scale(1.0)
