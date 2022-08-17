@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import Markdoc from '@markdoc/markdoc'
+import duoToneDark from 'prism-react-renderer/themes/duotoneDark'
 
 type Props = {
   problem: Problem
@@ -44,7 +45,12 @@ const ProblemSolutionModal = ({
           My thoughts through <em>solving</em> {problem.name}
         </h3>
         <div className={styles.solution__code}>
-          <Highlight {...defaultProps} code={problem.solution} language="jsx">
+          <Highlight
+            {...defaultProps}
+            theme={duoToneDark}
+            code={problem.solution}
+            language="jsx"
+          >
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
               <pre className={`${styles.solution} ${className}`} style={style}>
                 {tokens.map((line, i) => (
